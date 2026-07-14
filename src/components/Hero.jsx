@@ -31,7 +31,7 @@ export default function Hero() {
 
   return (
     <section className="bg-[#F7F4EF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Text side */}
         <div className={`${playfair.variable}`}>
           <span className="inline-block text-xs font-semibold tracking-widest text-blue-700 uppercase mb-4">
