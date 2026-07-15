@@ -1,44 +1,14 @@
 @import "tailwindcss";
 
-/* Add/replace this at the top of src/app/globals.css, right after your @import "tailwindcss"; line */
-
 :root {
   --background: #f7f4ef;
   --foreground: #171717;
 }
 
-/* This block will activate automatically later when you add dark mode.
-   For now it does nothing since nothing sets class="dark" on <html>. */
+/* Activates when you add class="dark" to <html> for a future dark mode toggle */
 .dark {
   --background: #111827;
   --foreground: #f7f4ef;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-/* ---- keep your existing marquee animation below this ---- */
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 18s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
 }
 
 @theme inline {
@@ -48,19 +18,16 @@ body {
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
-/* Add this to the bottom of src/app/globals.css */
+
+/* ---- Marquee (Hero strip) ---- */
 
 @keyframes marquee {
   0% {
@@ -77,4 +44,21 @@ body {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* ---- Color image swap (Product Details color swatch) ---- */
+
+@keyframes colorImageFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.color-image-fade {
+  animation: colorImageFade 0.4s ease-out;
 }

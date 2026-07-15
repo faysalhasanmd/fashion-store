@@ -104,7 +104,8 @@ export default function CartPage() {
         Your Cart
       </h1>
       <p className="text-sm text-gray-500 mb-8">
-        {totalItems} {totalItems === 1 ? "item" : "items"} in your cart
+        <span className="font-semibold text-red-600">{totalItems}</span>{" "}
+        {totalItems === 1 ? "item" : "items"} in your cart
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
