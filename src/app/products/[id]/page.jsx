@@ -60,6 +60,7 @@ export default function ProductDetailsPage() {
           selectedColor={selectedColor}
           displayImage={displayImage}
           priority={isDefaultColor}
+          onSelectColor={setSelectedColor}
         />
 
         {/* Details */}
