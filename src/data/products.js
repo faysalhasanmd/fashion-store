@@ -120,7 +120,7 @@ const products = [
     category: "Saree",
     price: 3490,
     image:
-      "https://images.unsplash.com/photo-1610030181087-540f6d5e0e57?w=800&q=80",
+      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80",
     rating: 4.9,
     colors: ["Red", "Maroon"],
     sizes: ["Free Size"],
