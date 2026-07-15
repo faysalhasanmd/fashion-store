@@ -10,6 +10,25 @@
 const products = [
   {
     id: 1,
+    name: "Slim Fit Denim Jacket",
+    category: "Jackets",
+    price: 2890,
+    image:
+      "https://plus.unsplash.com/premium_photo-1698260795242-0a3eb6e150e7?q=80&w=687&auto=format&fit=crop",
+    colorImages: {
+      Blue: "https://plus.unsplash.com/premium_photo-1698260795242-0a3eb6e150e7?q=80&w=687&auto=format&fit=crop",
+      Black:
+        "https://images.unsplash.com/photo-1590027753670-7c5f8f4249ec?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // 🟡 Unsplash+ premium — verify it loads
+    },
+    rating: 4.7,
+    colors: ["Blue", "Black"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    description:
+      "A rugged yet stylish slim-fit denim jacket that pairs perfectly with any casual outfit. Built to last with premium stitching.",
+  },
+  {
+    id: 2,
     name: "Classic Cotton Panjabi",
     category: "Panjabi",
     price: 1490,
@@ -27,25 +46,6 @@ const products = [
     inStock: true,
     description:
       "A timeless cotton panjabi crafted for everyday comfort and traditional elegance. Breathable fabric, perfect for both casual and semi-formal occasions.",
-  },
-  {
-    id: 2,
-    name: "Slim Fit Denim Jacket",
-    category: "Jackets",
-    price: 2890,
-    image:
-      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
-    colorImages: {
-      Black:
-        "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80",
-      Blue: "https://plus.unsplash.com/premium_photo-1698260795242-0a3eb6e150e7?q=80&w=687&auto=format&fit=crop", // 🟡 Unsplash+ premium — verify it loads
-    },
-    rating: 4.7,
-    colors: ["Black", "Blue"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    description:
-      "A rugged yet stylish slim-fit denim jacket that pairs perfectly with any casual outfit. Built to last with premium stitching.",
   },
   {
     id: 3,
@@ -74,7 +74,7 @@ const products = [
     category: "T-Shirts",
     price: 590,
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
+      "https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QmFzaWMlMjBXaGl0ZSUyMFQtU2hpcnR8ZW58MHx8MHx8fDA%3D",
     colorImages: {
       Black:
         "https://images.unsplash.com/photo-1627225925683-1da7021732ea?w=600&auto=format&fit=crop&q=60",

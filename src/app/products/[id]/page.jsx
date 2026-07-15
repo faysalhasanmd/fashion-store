@@ -1,17 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Star, ChevronLeft } from "lucide-react";
+import { ChevronLeft, Star } from "lucide-react";
 import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { useProductSelection } from "@/hooks/useProductSelection";
 
 import ProductImage from "@/components/product-details/ProductImage";
+import ProductNotFound from "@/components/product-details/ProductNotFound";
 import ColorSelector from "@/components/product-details/ColorSelector";
 import SizeSelector from "@/components/product-details/SizeSelector";
 import QuantitySelector from "@/components/product-details/QuantitySelector";
 import AddToCartButton from "@/components/product-details/AddToCartButton";
-import ProductNotFound from "@/components/product-details/ProductNotFound";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -20,23 +20,32 @@ export default function ProductDetailsPage() {
 
   const product = products.find((p) => p.id === Number(id));
 
-  const {
-    selectedSize,
-    setSelectedSize,
-    selectedColor,
-    setSelectedColor,
-    quantity,
-    increaseQuantity,
-    decreaseQuantity,
-    justAdded,
-    displayImage,
-    handleAddToCart,
-  } = useProductSelection(product, addToCart);
+  const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || null);
+  const [selectedColor, setSelectedColor] = useState(
+    product?.colors?.[0] || null,
+  );
+  const [quantity, setQuantity] = useState(1);
+  const [justAdded, setJustAdded] = useState(false);
 
-  if (!product) return <ProductNotFound />;
+  if (!product) {
+    return <ProductNotFound />;
+  }
+
+  const handleAddToCart = () => {
+    if (!product.inStock) return;
+    addToCart(product, quantity, selectedSize, selectedColor);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 2000);
+  };
+
+  const displayImage = product.colorImages?.[selectedColor] || product.image;
+  // Only mark the default color's image as priority — avoids Next.js
+  // LCP/preload warnings when the image swaps on color selection.
+  const isDefaultColor = selectedColor === product.colors?.[0];
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      {/* Back link */}
       <button
         onClick={() => router.back()}
         className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 mb-6 transition-colors"
@@ -50,8 +59,10 @@ export default function ProductDetailsPage() {
           product={product}
           selectedColor={selectedColor}
           displayImage={displayImage}
+          priority={isDefaultColor}
         />
 
+        {/* Details */}
         <div>
           <p className="text-xs font-semibold tracking-widest text-blue-700 uppercase mb-2">
             {product.category}
@@ -90,8 +101,8 @@ export default function ProductDetailsPage() {
 
           <QuantitySelector
             quantity={quantity}
-            onIncrease={increaseQuantity}
-            onDecrease={decreaseQuantity}
+            onIncrease={() => setQuantity((q) => q + 1)}
+            onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
           />
 
           <AddToCartButton

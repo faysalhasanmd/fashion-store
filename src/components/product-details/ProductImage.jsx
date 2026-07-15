@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-export default function ProductImage({ product, selectedColor, displayImage }) {
+export default function ProductImage({
+  product,
+  selectedColor,
+  displayImage,
+  priority,
+}) {
   return (
     <div
       key={selectedColor}
@@ -10,7 +15,7 @@ export default function ProductImage({ product, selectedColor, displayImage }) {
         src={displayImage}
         alt={`${product.name}${selectedColor ? ` - ${selectedColor}` : ""}`}
         fill
-        priority
+        priority={priority}
         sizes="(max-width: 1024px) 100vw, 50vw"
         className="object-cover"
       />
