@@ -8,7 +8,7 @@ export default function QuantitySelector({ quantity, onIncrease, onDecrease }) {
           className="w-14 h-14 sm:w-10 sm:h-10 flex items-center justify-center text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors text-lg"
           aria-label="Decrease quantity"
         >
-          −
+          -
         </button>
         <span className="text-base font-bold text-gray-900 sm:w-10 text-center">
           {quantity}
