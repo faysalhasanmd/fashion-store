@@ -2,15 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 import { Heart, Star, ArrowRight } from "lucide-react";
 import products from "@/data/products";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-});
 
 // Curated set of products to showcase as "New Arrivals"
 const NEW_ARRIVAL_IDS = [2, 7, 5, 10];
@@ -46,13 +40,15 @@ export default function NewArrivals() {
             {/* Image */}
             <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
               <Link
+                prefetch={false}
                 href={`/products/${product.id}`}
-                className="block w-full h-full"
+                className="relative block w-full h-full"
               >
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
+                  priority
                   sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -80,6 +76,7 @@ export default function NewArrivals() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <Link
                   href={`/products/${product.id}`}
+                  // prefetch={false}
                   className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white text-gray-900 text-xs font-bold uppercase tracking-wide px-5 py-2.5 shadow-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-orange-500 hover:text-white"
                 >
                   View Product

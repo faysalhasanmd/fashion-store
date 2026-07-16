@@ -1,14 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 import { Tag } from "lucide-react";
 import products from "@/data/products";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-});
 
 const DISCOUNT_PERCENT = 20;
 const SALE_PRODUCT_ID = 6; // High-Waist Wide Leg Trousers
@@ -65,6 +59,7 @@ export default function SaleBanner() {
 
           <Link
             href={`/products/${product.id}`}
+            // prefetch={false}
             className="inline-flex w-fit items-center bg-orange-500 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm font-semibold hover:bg-orange-600 hover:scale-105 transition-all"
           >
             Shop the Sale

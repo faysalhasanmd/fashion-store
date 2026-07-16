@@ -26,6 +26,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
+                  prefetch={false}
                   className="hover:text-[#0B3C49] transition-colors"
                 >
                   Home
@@ -34,6 +35,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/products"
+                  prefetch={false}
                   className="hover:text-[#0B3C49] transition-colors"
                 >
                   Products
@@ -42,6 +44,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/cart"
+                  prefetch={false}
                   className="hover:text-[#0B3C49] transition-colors"
                 >
                   Cart
@@ -171,6 +174,7 @@ export default function Footer() {
           <div className="flex gap-4">
             <Link
               href="/terms"
+              prefetch={false}
               className="hover:text-[#0B3C49] transition-colors"
             >
               Terms
@@ -178,6 +182,7 @@ export default function Footer() {
             <span>|</span>
             <Link
               href="/privacy"
+              prefetch={false}
               className="hover:text-[#0B3C49] transition-colors"
             >
               Privacy
@@ -185,6 +190,7 @@ export default function Footer() {
             <span>|</span>
             <Link
               href="/shipping"
+              prefetch={false}
               className="hover:text-[#0B3C49] transition-colors"
             >
               Shipping

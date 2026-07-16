@@ -33,15 +33,15 @@ const products = [
     category: "Panjabi",
     price: 1490,
     image:
-      "https://images.unsplash.com/photo-1774527929685-0372244a6232?q=80&w=687&auto=format&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1691030256214-dc57034ec935?q=80&w=687&auto=format&fit=crop",
     colorImages: {
+      Red: "https://plus.unsplash.com/premium_photo-1691030256214-dc57034ec935?q=80&w=687&auto=format&fit=crop", // 🟡 Unsplash+ premium — verify it loads
       White:
         "https://images.unsplash.com/photo-1774527929685-0372244a6232?q=80&w=687&auto=format&fit=crop",
-      Red: "https://plus.unsplash.com/premium_photo-1691030256214-dc57034ec935?q=80&w=687&auto=format&fit=crop", // 🟡 Unsplash+ premium — verify it loads
       Gray: "https://images.unsplash.com/photo-1711385893232-992709cee0ef?w=600&auto=format&fit=crop&q=60",
     },
     rating: 4.5,
-    colors: ["White", "Red", "Gray"],
+    colors: ["Red", "White", "Gray"],
     sizes: ["M", "L", "XL"],
     inStock: true,
     description:

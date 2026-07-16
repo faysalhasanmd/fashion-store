@@ -2,18 +2,12 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { Search, ArrowUpDown } from "lucide-react";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductCard from "@/components/ProductCard";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
 import products from "@/data/products";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-});
 
 const sortOptions = [
   { value: "default", label: "Default" },
@@ -161,7 +155,7 @@ export default function ProductsPage() {
               data-aos-delay={(index % 4) * 80}
               data-aos-duration="500"
             >
-              <ProductCard product={product} />
+              <ProductCard product={product} priority={index < 4} />
             </div>
           ))}
         </div>

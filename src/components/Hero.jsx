@@ -49,6 +49,7 @@ export default function Hero() {
           >
             <Link
               href="/products"
+              prefetch={false}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-orange-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40"
             >
               <span className="absolute inset-0 -translate-x-full bg-white/25 skew-x-12 transition-transform duration-700 ease-out group-hover:translate-x-full" />
@@ -57,6 +58,7 @@ export default function Hero() {
 
             <Link
               href="/products"
+              prefetch={false}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-gray-300 px-8 py-3.5 text-sm font-semibold text-gray-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900"
             >
               <span className="absolute inset-0 -translate-x-full bg-gray-900/5 skew-x-12 transition-transform duration-700 ease-out group-hover:translate-x-full" />

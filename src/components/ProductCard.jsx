@@ -2,7 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
 
-export default function ProductCard({ product, aosDelay = 0 }) {
+export default function ProductCard({
+  product,
+  aosDelay = 0,
+  priority = false,
+}) {
   const { id, name, category, price, image, rating, inStock } = product;
 
   return (
@@ -14,11 +18,16 @@ export default function ProductCard({ product, aosDelay = 0 }) {
     >
       {/* Image */}
       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-        <Link href={`/products/${id}`} className="block w-full h-full">
+        <Link
+          prefetch={false}
+          href={`/products/${id}`}
+          className="relative block w-full h-full"
+        >
           <Image
             src={image}
             alt={name}
             fill
+            priority={priority}
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />

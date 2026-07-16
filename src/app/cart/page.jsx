@@ -104,6 +104,7 @@ export default function CartPage() {
         </p>
         <Link
           href="/products"
+          prefetch={false}
           className="inline-block bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
         >
           Browse Products
@@ -253,6 +254,7 @@ export default function CartPage() {
 
             <Link
               href="/products"
+              prefetch={false}
               className="block text-center text-sm text-gray-600 hover:text-gray-900 mt-4 transition-colors"
             >
               ← Continue Shopping

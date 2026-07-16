@@ -36,6 +36,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
+          prefetch={false}
           className="text-lg font-bold tracking-tight text-gray-900 shrink-0"
           data-aos="fade-right"
           data-aos-delay="100"
@@ -59,6 +60,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 className={`px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-colors ${
                   isActive
                     ? "bg-gray-900 text-white"
@@ -79,6 +81,7 @@ export default function Navbar() {
         >
           <Link
             href="/cart"
+            prefetch={false}
             className="relative hidden sm:flex items-center gap-2 border border-gray-300 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 hover:border-gray-900 transition-colors"
           >
             <ShoppingBag className="w-4 h-4" />
@@ -93,6 +96,7 @@ export default function Navbar() {
           {/* Cart icon only, for small screens */}
           <Link
             href="/cart"
+            prefetch={false}
             className="relative sm:hidden p-2"
             aria-label="Cart"
           >

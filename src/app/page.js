@@ -36,6 +36,7 @@ export default function HomePage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10">
           {categories.map((product, index) => (
             <Link
+              prefetch={false}
               key={product.category}
               href={`/products/${product.id}`}
               className="group flex flex-col items-center gap-3"
@@ -97,6 +98,7 @@ export default function HomePage() {
         <div className="text-center mt-10" data-aos="zoom-in">
           <Link
             href="/products"
+            prefetch={false}
             className="group inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-orange-600 hover:scale-105 transition-all"
           >
             View all

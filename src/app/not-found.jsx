@@ -1,14 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 import { Home, ShoppingBag } from "lucide-react";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-});
 
 export default function NotFound() {
   return (
@@ -86,13 +80,14 @@ export default function NotFound() {
           This page isn't in stock
         </h1>
         <p className="text-sm text-gray-500 mb-8 leading-relaxed">
-          The page you're looking for doesn't exist, moved, or the link's a
+          The page you are looking for doesn't exist, moved, or the link's a
           little off. Let's get you back to shopping.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/"
+            prefetch={false}
             className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
           >
             <Home className="w-4 h-4" />
@@ -100,6 +95,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/products"
+            prefetch={false}
             className="inline-flex items-center gap-2 bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-full text-sm font-semibold hover:border-gray-900 hover:text-gray-900 transition-colors"
           >
             <ShoppingBag className="w-4 h-4" />
