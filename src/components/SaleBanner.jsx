@@ -16,10 +16,10 @@ export default function SaleBanner() {
   );
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <div className="relative bg-orange-50/60 border border-orange-100 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 bg-[#f7f4ef] dark:bg-gray-900">
+      <div className="relative bg-orange-50/60 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
         {/* Decorative soft blob */}
-        <div className="absolute -top-16 -left-16 w-64 h-64 bg-orange-200/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-16 -left-16 w-64 h-64 bg-orange-200/40 dark:bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Text content */}
         <div
@@ -27,32 +27,34 @@ export default function SaleBanner() {
           data-aos="fade-up"
           data-aos-duration="700"
         >
-          <span className="inline-flex items-center gap-2 w-fit bg-orange-100 text-orange-700 text-[11px] sm:text-xs font-semibold tracking-widest uppercase px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full">
+          <span className="inline-flex items-center gap-2 w-fit bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 text-[11px] sm:text-xs font-semibold tracking-widest uppercase px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full">
             <Tag className="w-3.5 h-3.5" />
             Limited Time Offer
           </span>
 
           <h2
-            className="text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight"
+            className="text-2xl sm:text-4xl lg:text-5xl text-gray-900 dark:text-white leading-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             {DISCOUNT_PERCENT}% Off
             <br />
-            <span className="italic text-orange-600">{product.name}</span>
+            <span className="italic text-orange-600 dark:text-orange-400">
+              {product.name}
+            </span>
           </h2>
 
-          <p className="text-gray-600 text-sm sm:text-base max-w-sm leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-sm leading-relaxed">
             {product.description}
           </p>
 
           <div className="flex items-center flex-wrap gap-2 sm:gap-3">
-            <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
               ৳{discountedPrice.toLocaleString()}
             </span>
-            <span className="text-base sm:text-lg text-gray-400 line-through">
+            <span className="text-base sm:text-lg text-gray-400 dark:text-gray-500 line-through">
               ৳{product.price.toLocaleString()}
             </span>
-            <span className="bg-red-50 text-red-600 text-xs font-bold px-2.5 py-1 rounded-full">
+            <span className="bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 text-xs font-bold px-2.5 py-1 rounded-full">
               -{DISCOUNT_PERCENT}%
             </span>
           </div>

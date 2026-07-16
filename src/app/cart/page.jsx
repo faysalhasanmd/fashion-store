@@ -75,11 +75,14 @@ export default function CartPage() {
   // to avoid a flash of the empty state
   if (!isLoaded) {
     return (
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-pulse">
-        <div className="h-8 w-40 bg-gray-200 rounded mb-8" />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-pulse dark:bg-gray-900">
+        <div className="h-8 w-40 bg-gray-200 dark:bg-gray-700 rounded mb-8" />
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-28 bg-gray-200 rounded-2xl" />
+            <div
+              key={i}
+              className="h-28 bg-gray-200 dark:bg-gray-700 rounded-2xl"
+            />
           ))}
         </div>
       </div>
@@ -90,22 +93,22 @@ export default function CartPage() {
   if (cartItems.length === 0) {
     return (
       <div
-        className="max-w-3xl mx-auto px-4 py-24 text-center"
+        className="max-w-3xl mx-auto px-4 py-24 text-center dark:bg-gray-900"
         data-aos="fade-up"
       >
-        <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
-          <ShoppingBag className="w-7 h-7 text-gray-400" />
+        <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mx-auto mb-5">
+          <ShoppingBag className="w-7 h-7 text-gray-400 dark:text-gray-500" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           Your cart is empty
         </h1>
-        <p className="text-gray-500 mb-6">
+        <p className="text-gray-500 dark:text-gray-400 mb-6">
           Looks like you haven't added anything yet. Let's fix that.
         </p>
         <Link
           href="/products"
           prefetch={false}
-          className="inline-block bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
+          className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-full text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
         >
           Browse Products
         </Link>
@@ -114,19 +117,21 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 dark:bg-gray-900">
       <h1
-        className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1"
+        className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1"
         data-aos="fade-up"
       >
         Your Cart
       </h1>
       <p
-        className="text-sm text-gray-500 mb-8"
+        className="text-sm text-gray-500 dark:text-gray-400 mb-8"
         data-aos="fade-up"
         data-aos-delay="80"
       >
-        <span className="font-semibold text-red-600">{totalItems}</span>{" "}
+        <span className="font-semibold text-red-600 dark:text-red-400">
+          {totalItems}
+        </span>{" "}
         {totalItems === 1 ? "item" : "items"} in your cart
       </p>
 
@@ -136,12 +141,12 @@ export default function CartPage() {
           {sortedCartItems.map((item, index) => (
             <div
               key={`${item.id}-${item.selectedSize}-${item.selectedColor}`}
-              className="flex gap-4 bg-white border border-gray-200 rounded-2xl p-4"
+              className="flex gap-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4"
               data-aos="fade-up"
               data-aos-delay={Math.min(index, 5) * 60}
               data-aos-duration="450"
             >
-              <div className="relative w-24 h-28 sm:w-28 sm:h-32 shrink-0 rounded-xl overflow-hidden bg-gray-100">
+              <div className="relative w-24 h-28 sm:w-28 sm:h-32 shrink-0 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -153,22 +158,22 @@ export default function CartPage() {
 
               <div className="flex-1 flex flex-col justify-between min-w-0">
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 truncate">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white truncate">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                     {item.selectedColor && <span>{item.selectedColor}</span>}
                     {item.selectedColor && item.selectedSize && " · "}
                     {item.selectedSize && <span>Size {item.selectedSize}</span>}
                   </p>
-                  <p className="text-sm font-bold text-gray-900 mt-2">
+                  <p className="text-sm font-bold text-gray-900 dark:text-white mt-2">
                     ৳{item.price.toLocaleString()}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-between mt-3">
                   {/* Quantity control */}
-                  <div className="inline-flex items-center border border-gray-300 rounded-full">
+                  <div className="inline-flex items-center border border-gray-300 dark:border-gray-600 rounded-full">
                     <button
                       onClick={() =>
                         updateQuantity(
@@ -178,12 +183,12 @@ export default function CartPage() {
                           item.quantity - 1,
                         )
                       }
-                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
+                      className="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                       aria-label="Decrease quantity"
                     >
                       −
                     </button>
-                    <span className="w-8 text-center text-xs font-semibold text-gray-900">
+                    <span className="w-8 text-center text-xs font-semibold text-gray-900 dark:text-white">
                       {item.quantity}
                     </span>
                     <button
@@ -195,7 +200,7 @@ export default function CartPage() {
                           item.quantity + 1,
                         )
                       }
-                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
+                      className="w-8 h-8 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                       aria-label="Increase quantity"
                     >
                       +
@@ -205,7 +210,7 @@ export default function CartPage() {
                   {/* Remove button */}
                   <button
                     onClick={() => handleRemove(item)}
-                    className="text-gray-400 hover:text-red-500 transition-colors p-2"
+                    className="text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors p-2"
                     aria-label="Remove item"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -219,35 +224,39 @@ export default function CartPage() {
         {/* Order summary */}
         <div className="lg:col-span-1">
           <div
-            className="bg-white border border-gray-200 rounded-2xl p-6 sticky top-24"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 sticky top-24"
             data-aos="fade-left"
             data-aos-delay="150"
           >
-            <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-4">
               Order Summary
             </h2>
 
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 dark:text-gray-300">
                 <span>Subtotal</span>
                 <span>৳{totalPrice.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 dark:text-gray-300">
                 <span>Shipping</span>
-                <span className="text-green-600 font-medium">Free</span>
+                <span className="text-green-600 dark:text-green-400 font-medium">
+                  Free
+                </span>
               </div>
             </div>
 
-            <div className="border-t border-gray-200 mt-4 pt-4 flex justify-between items-center">
-              <span className="text-sm font-semibold text-gray-900">Total</span>
-              <span className="text-xl font-bold text-gray-900">
+            <div className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4 flex justify-between items-center">
+              <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                Total
+              </span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
                 ৳{totalPrice.toLocaleString()}
               </span>
             </div>
 
             <button
               onClick={handleCheckout}
-              className="w-full mt-6 bg-gray-900 text-white py-3.5 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors"
+              className="w-full mt-6 bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3.5 rounded-full text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
             >
               Proceed to Checkout
             </button>
@@ -255,7 +264,7 @@ export default function CartPage() {
             <Link
               href="/products"
               prefetch={false}
-              className="block text-center text-sm text-gray-600 hover:text-gray-900 mt-4 transition-colors"
+              className="block text-center text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mt-4 transition-colors"
             >
               ← Continue Shopping
             </Link>

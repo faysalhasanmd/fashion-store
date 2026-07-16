@@ -19,7 +19,7 @@ export default function ProductImage({
       {/* Main image */}
       <div
         key={selectedColor}
-        className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 color-image-fade"
+        className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 color-image-fade"
       >
         <Image
           src={displayImage}
@@ -30,7 +30,7 @@ export default function ProductImage({
           className="object-cover"
         />
         {!product.inStock && (
-          <span className="absolute top-4 left-4 bg-gray-900/90 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+          <span className="absolute top-4 left-4 bg-gray-900/90 dark:bg-white/90 text-white dark:text-gray-900 text-xs font-medium px-3 py-1.5 rounded-full">
             Out of Stock
           </span>
         )}
@@ -45,10 +45,10 @@ export default function ProductImage({
               type="button"
               onClick={() => onSelectColor?.(color)}
               aria-label={color ? `View ${color}` : "View image"}
-              className={`relative aspect-square rounded-xl overflow-hidden bg-gray-100 border-2 transition-colors ${
+              className={`relative aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border-2 transition-colors ${
                 selectedColor === color
-                  ? "border-gray-900"
-                  : "border-transparent hover:border-gray-300"
+                  ? "border-gray-900 dark:border-white"
+                  : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"
               }`}
             >
               <Image

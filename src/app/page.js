@@ -17,18 +17,18 @@ export default function HomePage() {
   );
 
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <Hero />
 
       <NewArrivals />
 
       {/* Shop by Category */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 mb-12 bg-[#f7f4ef] dark:bg-gray-900">
         <div className="mb-8" data-aos="fade-up">
-          <span className="text-xs font-semibold tracking-widest text-orange-600 uppercase">
+          <span className="text-xs font-semibold tracking-widest text-orange-600 dark:text-orange-400 uppercase">
             Browse
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1">
             Search by Category
           </h2>
         </div>
@@ -44,7 +44,7 @@ export default function HomePage() {
               data-aos-delay={(index % 6) * 80}
             >
               <div
-                className="relative w-full aspect-square overflow-hidden bg-orange-50 border border-orange-100 transition-[border-radius,transform] duration-500 ease-out group-hover:-translate-y-1"
+                className="relative w-full aspect-square overflow-hidden bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 transition-[border-radius,transform] duration-500 ease-out group-hover:-translate-y-1"
                 style={{
                   borderRadius: "63% 37% 54% 46% / 46% 44% 56% 54%",
                 }}
@@ -64,7 +64,7 @@ export default function HomePage() {
                   />
                 </div>
               </div>
-              <span className="text-xs sm:text-sm font-medium text-gray-700 text-center group-hover:text-orange-600 transition-colors">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 text-center group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                 {product.category}
               </span>
             </Link>
@@ -73,12 +73,12 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 bg-[#f7f4ef] dark:bg-gray-900">
         <div className="mb-8" data-aos="fade-up">
-          <span className="text-xs font-semibold tracking-widest text-orange-600 uppercase">
+          <span className="text-xs font-semibold tracking-widest text-orange-600 dark:text-orange-400 uppercase">
             Handpicked
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1">
             Featured Products
           </h2>
         </div>

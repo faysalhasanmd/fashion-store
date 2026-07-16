@@ -25,17 +25,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="bg-[#F7F4EF] relative overflow-hidden">
+    <section className="bg-[#F7F4EF] dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Text side */}
         <div data-aos="fade-right" data-aos-duration="800">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase leading-[1.05] text-gray-900 mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase leading-[1.05] text-gray-900 dark:text-white mb-6 tracking-tight">
             Trendy Fashion
             <br />
             Collection
           </h1>
 
-          <p className="text-gray-600 text-base sm:text-lg max-w-md mb-8">
+          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-md mb-8">
             Finding your fashion has never been easier. Browse the best
             selection of famous fashion brands that suit your style and
             preferences.
@@ -59,9 +59,9 @@ export default function Hero() {
             <Link
               href="/products"
               prefetch={false}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-gray-300 px-8 py-3.5 text-sm font-semibold text-gray-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-gray-300 dark:border-gray-600 px-8 py-3.5 text-sm font-semibold text-gray-900 dark:text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900 dark:hover:border-white"
             >
-              <span className="absolute inset-0 -translate-x-full bg-gray-900/5 skew-x-12 transition-transform duration-700 ease-out group-hover:translate-x-full" />
+              <span className="absolute inset-0 -translate-x-full bg-gray-900/5 dark:bg-white/10 skew-x-12 transition-transform duration-700 ease-out group-hover:translate-x-full" />
               <span className="relative z-10 flex items-center gap-2">
                 Explore Categories
                 <svg
@@ -88,16 +88,20 @@ export default function Hero() {
             data-aos-delay="350"
           >
             <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">
                 80+
               </p>
-              <p className="text-sm text-gray-500 mt-1">Unique Style</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Unique Style
+              </p>
             </div>
             <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+              <p className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">
                 40+
               </p>
-              <p className="text-sm text-gray-500 mt-1">Brand Trusted</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Brand Trusted
+              </p>
             </div>
           </div>
 
@@ -108,10 +112,10 @@ export default function Hero() {
             data-aos-delay="450"
           >
             <div className="flex -space-x-3">
-              <span className="h-8 w-8 rounded-full bg-gray-900 ring-2 ring-[#F7F4EF]" />
-              <span className="h-8 w-8 rounded-full bg-orange-500 ring-2 ring-[#F7F4EF]" />
+              <span className="h-8 w-8 rounded-full bg-gray-900 ring-2 ring-[#F7F4EF] dark:bg-white dark:ring-gray-900" />
+              <span className="h-8 w-8 rounded-full bg-orange-500 ring-2 ring-[#F7F4EF] dark:ring-gray-900" />
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               80+ Molestie hendrerit amet sapien volutpat.
             </p>
           </div>
@@ -127,7 +131,7 @@ export default function Hero() {
           {/* decorative sparkle behind image */}
           <svg
             viewBox="0 0 200 200"
-            className="pointer-events-none absolute -top-10 right-0 h-56 w-56 text-orange-200 animate-spin-slow lg:h-72 lg:w-72"
+            className="pointer-events-none absolute -top-10 right-0 h-56 w-56 text-orange-200 dark:text-orange-900/40 animate-spin-slow lg:h-72 lg:w-72"
           >
             <path
               d="M100 0 C104 70 130 96 200 100 C130 104 104 130 100 200 C96 130 70 104 0 100 C70 96 96 70 100 0 Z"
@@ -138,12 +142,12 @@ export default function Hero() {
 
           {/* offset outline frame — sits behind the image, peeking out */}
           <div
-            className="absolute -bottom-4 -left-4 h-full w-full border-2 border-orange-400/60 hidden sm:block"
+            className="absolute -bottom-4 -left-4 h-full w-full border-2 border-orange-400/60 dark:border-orange-500/40 hidden sm:block"
             style={{ borderRadius: "0 48px 0 48px" }}
           />
 
           <div
-            className="relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-gray-200 shadow-xl"
+            className="relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-xl"
             style={{ borderRadius: "48px 12px 48px 12px" }}
           >
             {showcaseImages.map((item, index) => (
@@ -203,7 +207,7 @@ function Marquee() {
   const looped = [...items, ...items, ...items];
 
   return (
-    <div className="bg-gray-900 py-3 overflow-hidden">
+    <div className="bg-gray-900 dark:bg-black py-3 overflow-hidden">
       <div className="flex w-max animate-marquee">
         {looped.map((item, i) => (
           <span
