@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Oxivos | Fashion Store",
+  title: {
+    default: "Oxivos || Fashion Store",
+    template: "%s || Oxivos",
+  },
   description: "A modern fashion store frontend built with Next.js",
 };
 

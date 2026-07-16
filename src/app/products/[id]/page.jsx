@@ -48,10 +48,15 @@ export default function ProductDetailsPage() {
       {/* Back link */}
       <button
         onClick={() => router.back()}
-        className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+        className="group flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-amber-600 mb-6 transition-all duration-300 relative py-1"
       >
-        <ChevronLeft className="w-4 h-4" />
-        Back
+        {/* Chevron icon with left translation on hover */}
+        <ChevronLeft className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:-translate-x-1" />
+
+        <span>Back</span>
+
+        {/* Cool underline animation */}
+        <span className="absolute bottom-0 left-5 right-0 h-[2px] bg-amber-600 transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100" />
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
