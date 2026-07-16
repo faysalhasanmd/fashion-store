@@ -40,11 +40,16 @@ export default function Newsletter() {
         <h2
           className="text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-4 leading-tight"
           style={{ fontFamily: "var(--font-playfair)" }}
+          data-aos="fade-up"
         >
           Discover the Latest{" "}
           <span className="italic text-orange-600">Fashion Drops</span>
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base mb-10">
+        <p
+          className="text-gray-600 text-sm sm:text-base mb-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           Get the newest arrivals and exclusive offers delivered right to your
           inbox.
         </p>
@@ -53,6 +58,8 @@ export default function Newsletter() {
         <form
           onSubmit={handleSubscribe}
           className="flex items-center bg-white border border-gray-200 rounded-full p-1.5 sm:p-2 max-w-xl mx-auto shadow-sm focus-within:border-orange-400 focus-within:ring-4 focus-within:ring-orange-100 transition-all"
+          data-aos="zoom-in"
+          data-aos-delay="200"
         >
           <Mail className="w-4 h-4 text-gray-400 ml-3 sm:ml-4 shrink-0" />
           <input
@@ -72,7 +79,11 @@ export default function Newsletter() {
           </button>
         </form>
 
-        <p className="text-xs text-gray-500 mt-4">
+        <p
+          className="text-xs text-gray-500 mt-4"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           No spam. Unsubscribe anytime.
         </p>
       </div>

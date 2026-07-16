@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { Search, ArrowUpDown } from "lucide-react";
 import { Playfair_Display } from "next/font/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import ProductCard from "@/components/ProductCard";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
 import products from "@/data/products";
@@ -61,10 +63,19 @@ export default function ProductsPage() {
     return result;
   }, [selectedCategory, searchQuery, sortBy]);
 
+  // Re-run AOS whenever the visible product grid changes (filter/sort/loading)
+  // so newly-rendered cards get their scroll animations initialized.
+  useEffect(() => {
+    AOS.refreshHard();
+  }, [filteredProducts, isLoading]);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
       {/* Heading */}
-      <div className={`${playfair.variable} mb-6 text-center`}>
+      <div
+        className={`${playfair.variable} mb-6 text-center`}
+        data-aos="fade-up"
+      >
         <span className="text-xs font-semibold tracking-widest text-blue-700 uppercase">
           Shop All
         </span>
@@ -81,7 +92,11 @@ export default function ProductsPage() {
       </div>
 
       {/* Controls: search + sort, grouped together */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+      <div
+        className="flex flex-col sm:flex-row gap-3 mb-6"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
@@ -110,7 +125,11 @@ export default function ProductsPage() {
       </div>
 
       {/* Category filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div
+        className="flex flex-wrap gap-2 mb-8"
+        data-aos="fade-up"
+        data-aos-delay="150"
+      >
         {categories.map((category) => (
           <button
             key={category}
@@ -135,12 +154,19 @@ export default function ProductsPage() {
         </div>
       ) : filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {filteredProducts.map((product, index) => (
+            <div
+              key={product.id}
+              data-aos="fade-up"
+              data-aos-delay={(index % 4) * 80}
+              data-aos-duration="500"
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       ) : (
-        <div className="text-center py-14">
+        <div className="text-center py-14" data-aos="fade-in">
           <p className="text-gray-500 text-sm">
             No products match{" "}
             <span className="text-red-500 font-semibold">

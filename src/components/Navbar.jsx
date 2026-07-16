@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -17,19 +19,36 @@ export default function Navbar() {
   const { totalItems } = useCart();
   const pathname = usePathname();
 
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+    });
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50">
+    <header
+      className="sticky top-0 z-50"
+      data-aos="fade-down"
+      data-aos-duration="500"
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link
           href="/"
           className="text-lg font-bold tracking-tight text-gray-900 shrink-0"
+          data-aos="fade-right"
+          data-aos-delay="100"
         >
           OXIVOS<span className="text-blue-600">.</span>
         </Link>
 
         {/* Pill-shaped nav links (desktop) */}
-        <div className="hidden md:flex items-center gap-1 bg-white/70 border border-gray-200 rounded-full p-1.5 shadow-sm">
+        <div
+          className="hidden md:flex items-center gap-1 bg-white/70 border border-gray-200 rounded-full p-1.5 shadow-sm"
+          data-aos="fade-down"
+          data-aos-delay="150"
+        >
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -53,7 +72,11 @@ export default function Navbar() {
         </div>
 
         {/* Right side: Cart button + mobile menu toggle */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div
+          className="flex items-center gap-3 shrink-0"
+          data-aos="fade-left"
+          data-aos-delay="150"
+        >
           <Link
             href="/cart"
             className="relative hidden sm:flex items-center gap-2 border border-gray-300 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 hover:border-gray-900 transition-colors"
@@ -97,7 +120,11 @@ export default function Navbar() {
 
       {/* Mobile dropdown menu */}
       {isMenuOpen && (
-        <div className="md:hidden mx-4 mt-2 rounded-2xl border border-gray-200 bg-white/90 backdrop-blur shadow-sm px-4 py-4 flex flex-col gap-2">
+        <div
+          className="md:hidden mx-4 mt-2 rounded-2xl border border-gray-200 bg-white/90 backdrop-blur shadow-sm px-4 py-4 flex flex-col gap-2"
+          data-aos="fade-down"
+          data-aos-duration="300"
+        >
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"

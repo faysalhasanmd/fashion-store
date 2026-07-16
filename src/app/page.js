@@ -24,7 +24,7 @@ export default function HomePage() {
 
       {/* Shop by Category */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 mb-12">
-        <div className="mb-8">
+        <div className="mb-8" data-aos="fade-up">
           <span className="text-xs font-semibold tracking-widest text-orange-600 uppercase">
             Browse
           </span>
@@ -34,11 +34,13 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10">
-          {categories.map((product) => (
+          {categories.map((product, index) => (
             <Link
               key={product.category}
               href={`/products/${product.id}`}
               className="group flex flex-col items-center gap-3"
+              data-aos="fade-up"
+              data-aos-delay={(index % 6) * 80}
             >
               <div
                 className="relative w-full aspect-square overflow-hidden bg-orange-50 border border-orange-100 transition-[border-radius,transform] duration-500 ease-out group-hover:-translate-y-1"
@@ -71,7 +73,7 @@ export default function HomePage() {
 
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
-        <div className="mb-8">
+        <div className="mb-8" data-aos="fade-up">
           <span className="text-xs font-semibold tracking-widest text-orange-600 uppercase">
             Handpicked
           </span>
@@ -81,12 +83,18 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {featuredProducts.map((product, index) => (
+            <div
+              key={product.id}
+              data-aos="fade-up"
+              data-aos-delay={(index % 4) * 100}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-10" data-aos="zoom-in">
           <Link
             href="/products"
             className="group inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-orange-600 hover:scale-105 transition-all"

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import products from "@/data/products";
 
 // Pull showcase images straight from the product data
@@ -26,7 +28,7 @@ export default function Hero() {
     <section className="bg-[#F7F4EF] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Text side */}
-        <div>
+        <div data-aos="fade-right" data-aos-duration="800">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold uppercase leading-[1.05] text-gray-900 mb-6 tracking-tight">
             Trendy Fashion
             <br />
@@ -40,7 +42,11 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-12">
+          <div
+            className="flex flex-wrap gap-4 mb-12"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <Link
               href="/products"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-orange-500 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40"
@@ -74,7 +80,11 @@ export default function Hero() {
           </div>
 
           {/* Stat highlights */}
-          <div className="flex items-center gap-10 mb-6">
+          <div
+            className="flex items-center gap-10 mb-6"
+            data-aos="fade-up"
+            data-aos-delay="350"
+          >
             <div>
               <p className="text-3xl sm:text-4xl font-extrabold text-gray-900">
                 80+
@@ -90,7 +100,11 @@ export default function Hero() {
           </div>
 
           {/* Avatars + caption */}
-          <div className="flex items-center gap-3">
+          <div
+            className="flex items-center gap-3"
+            data-aos="fade-up"
+            data-aos-delay="450"
+          >
             <div className="flex -space-x-3">
               <span className="h-8 w-8 rounded-full bg-gray-900 ring-2 ring-[#F7F4EF]" />
               <span className="h-8 w-8 rounded-full bg-orange-500 ring-2 ring-[#F7F4EF]" />
@@ -102,7 +116,12 @@ export default function Hero() {
         </div>
 
         {/* Animated image showcase — cycles through product images */}
-        <div className="relative">
+        <div
+          className="relative"
+          data-aos="fade-left"
+          data-aos-duration="800"
+          data-aos-delay="150"
+        >
           {/* decorative sparkle behind image */}
           <svg
             viewBox="0 0 200 200"

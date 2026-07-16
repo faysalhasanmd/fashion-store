@@ -25,7 +25,7 @@ export default function NewArrivals() {
       className={`${playfair.variable} max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14`}
     >
       {/* Heading */}
-      <div className="mb-8">
+      <div className="mb-8" data-aos="fade-up">
         <span className="text-xs font-semibold tracking-widest text-orange-600 uppercase">
           Just Landed
         </span>
@@ -36,10 +36,12 @@ export default function NewArrivals() {
 
       {/* Product card grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-        {items.map((product) => (
+        {items.map((product, index) => (
           <div
             key={product.id}
             className="group flex flex-col rounded-2xl bg-white overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
           >
             {/* Image */}
             <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">

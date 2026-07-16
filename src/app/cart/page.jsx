@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { Trash2, ShoppingBag } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useCart } from "@/context/CartContext";
 
 export default function CartPage() {
@@ -15,6 +18,14 @@ export default function CartPage() {
     totalItems,
     isLoaded,
   } = useCart();
+
+  // Most recently added item first
+  const sortedCartItems = [...cartItems].reverse();
+
+  // Re-scan AOS whenever the cart list changes (add/remove/quantity update)
+  useEffect(() => {
+    AOS.refreshHard();
+  }, [cartItems]);
 
   const handleRemove = (item) => {
     Swal.fire({
@@ -78,7 +89,10 @@ export default function CartPage() {
   // Empty cart state
   if (cartItems.length === 0) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-24 text-center">
+      <div
+        className="max-w-3xl mx-auto px-4 py-24 text-center"
+        data-aos="fade-up"
+      >
         <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
           <ShoppingBag className="w-7 h-7 text-gray-400" />
         </div>
@@ -100,10 +114,17 @@ export default function CartPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
+      <h1
+        className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1"
+        data-aos="fade-up"
+      >
         Your Cart
       </h1>
-      <p className="text-sm text-gray-500 mb-8">
+      <p
+        className="text-sm text-gray-500 mb-8"
+        data-aos="fade-up"
+        data-aos-delay="80"
+      >
         <span className="font-semibold text-red-600">{totalItems}</span>{" "}
         {totalItems === 1 ? "item" : "items"} in your cart
       </p>
@@ -111,10 +132,13 @@ export default function CartPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart items */}
         <div className="lg:col-span-2 space-y-4">
-          {cartItems.map((item) => (
+          {sortedCartItems.map((item, index) => (
             <div
               key={`${item.id}-${item.selectedSize}-${item.selectedColor}`}
               className="flex gap-4 bg-white border border-gray-200 rounded-2xl p-4"
+              data-aos="fade-up"
+              data-aos-delay={Math.min(index, 5) * 60}
+              data-aos-duration="450"
             >
               <div className="relative w-24 h-28 sm:w-28 sm:h-32 shrink-0 rounded-xl overflow-hidden bg-gray-100">
                 <Image
@@ -193,7 +217,11 @@ export default function CartPage() {
 
         {/* Order summary */}
         <div className="lg:col-span-1">
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 sticky top-24">
+          <div
+            className="bg-white border border-gray-200 rounded-2xl p-6 sticky top-24"
+            data-aos="fade-left"
+            data-aos-delay="150"
+          >
             <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">
               Order Summary
             </h2>

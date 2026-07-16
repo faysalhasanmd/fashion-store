@@ -2,11 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star, ArrowRight } from "lucide-react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, aosDelay = 0 }) {
   const { id, name, category, price, image, rating, inStock } = product;
 
   return (
-    <div className="group flex flex-col bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
+    <div
+      className="group flex flex-col bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
+      data-aos="fade-up"
+      data-aos-delay={aosDelay}
+      data-aos-duration="500"
+    >
       {/* Image */}
       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
         <Link href={`/products/${id}`} className="block w-full h-full">
