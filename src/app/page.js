@@ -6,6 +6,7 @@ import SaleBanner from "@/components/SaleBanner";
 import Newsletter from "@/components/Newsletter";
 import products from "@/data/products";
 import NewArrivals from "@/components/NewArrivals";
+import TrendyCollection from "@/components/TrendyCollection";
 
 export default function HomePage() {
   // Show first 4 in-stock products as "featured"
@@ -21,6 +22,8 @@ export default function HomePage() {
       <Hero />
 
       <NewArrivals />
+
+      <TrendyCollection />
 
       {/* Shop by Category */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 mb-12 bg-[#f7f4ef] dark:bg-gray-900">

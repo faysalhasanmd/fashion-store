@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductCard from "@/components/ProductCard";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
+import Pagination from "@/components/Pagination";
 import products from "@/data/products";
 
 const sortOptions = [
@@ -15,11 +16,15 @@ const sortOptions = [
   { value: "price-desc", label: "Price: High to Low" },
 ];
 
+const ITEMS_PER_PAGE = 8;
+
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMounted, setHasMounted] = useState(false);
 
   // Simulate a brief fetch delay so the loading state is visible
   useEffect(() => {
@@ -57,11 +62,46 @@ export default function ProductsPage() {
     return result;
   }, [selectedCategory, searchQuery, sortBy]);
 
-  // Re-run AOS whenever the visible product grid changes (filter/sort/loading)
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProducts.length / ITEMS_PER_PAGE),
+  );
+
+  // Reset to page 1 whenever the filtered set changes (new search/category/sort)
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery, sortBy]);
+
+  // Clamp current page if it somehow exceeds the new total (e.g. filter shrinks the list)
+  useEffect(() => {
+    if (currentPage > totalPages) setCurrentPage(totalPages);
+  }, [totalPages, currentPage]);
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+  };
+
+  // Scroll to top only AFTER the new page has actually rendered —
+  // prevents the scroll position from fighting the grid's layout shift.
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  // Re-run AOS whenever the visible product grid changes (filter/sort/loading/page)
   // so newly-rendered cards get their scroll animations initialized.
   useEffect(() => {
     AOS.refreshHard();
-  }, [filteredProducts, isLoading]);
+  }, [paginatedProducts, isLoading]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 dark:bg-gray-900">
@@ -147,18 +187,26 @@ export default function ProductsPage() {
           ))}
         </div>
       ) : filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filteredProducts.map((product, index) => (
-            <div
-              key={product.id}
-              data-aos="fade-up"
-              data-aos-delay={(index % 4) * 80}
-              data-aos-duration="500"
-            >
-              <ProductCard product={product} priority={index < 4} />
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {paginatedProducts.map((product, index) => (
+              <div
+                key={product.id}
+                data-aos="fade-up"
+                data-aos-delay={(index % 4) * 80}
+                data-aos-duration="500"
+              >
+                <ProductCard product={product} priority={index < 4} />
+              </div>
+            ))}
+          </div>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={goToPage}
+          />
+        </>
       ) : (
         <div className="text-center py-14" data-aos="fade-in">
           <p className="text-gray-500 dark:text-gray-400 text-sm">

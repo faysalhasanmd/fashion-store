@@ -76,6 +76,8 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QmFzaWMlMjBXaGl0ZSUyMFQtU2hpcnR8ZW58MHx8MHx8fDA%3D",
     colorImages: {
+      White:
+        "https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QmFzaWMlMjBXaGl0ZSUyMFQtU2hpcnR8ZW58MHx8MHx8fDA%3D",
       Black:
         "https://images.unsplash.com/photo-1627225925683-1da7021732ea?w=600&auto=format&fit=crop&q=60",
       Red: "https://media.istockphoto.com/id/172688640/photo/red-blank-short-sleeved-t-shirt-front-isolated-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=rf1IRiD1DKjjCQbi5d5exC4lnCPnHGVRbJjHFuFhQAg=", // 🟡 iStock — verify it loads
@@ -141,6 +143,7 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",
     colorImages: {
+      Gray: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",
       White:
         "https://images.unsplash.com/photo-1688111421205-a0a85415b224?w=600&auto=format&fit=crop&q=60",
       Orange:
@@ -161,6 +164,8 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&q=80",
     colorImages: {
+      Khaki:
+        "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=800&q=80",
       Pink: "https://plus.unsplash.com/premium_photo-1689575249309-79f1308d6180?w=600&auto=format&fit=crop&q=60", // 🟡 Unsplash+ premium — verify it loads
       White:
         "https://images.unsplash.com/photo-1697319452360-ee47502e39f6?w=600&auto=format&fit=crop&q=60",
@@ -180,6 +185,7 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80",
     colorImages: {
+      Red: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80",
       Yellow:
         "https://images.unsplash.com/photo-1609748341932-f0206c09412b?w=600&auto=format&fit=crop&q=60",
       Green:
@@ -223,13 +229,15 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
     colorImages: {
+      Black:
+        "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
       Green:
         "https://images.unsplash.com/photo-1605131546231-a5f385db4a6b?w=600&auto=format&fit=crop&q=60",
       Olive:
         "https://images.unsplash.com/photo-1758981400298-78cd18eb6793?q=80&w=687&auto=format&fit=crop",
     },
     rating: 4.4,
-    colors: ["Beige", "Olive", "Green"],
+    colors: ["Black", "Olive", "Green"],
     sizes: ["S", "M", "L"],
     inStock: false,
     description:

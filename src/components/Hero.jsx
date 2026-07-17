@@ -6,6 +6,7 @@ import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import products from "@/data/products";
+import { Sparkles, Truck, Sun as SunIcon, Zap, Eye } from "lucide-react";
 
 // Pull showcase images straight from the product data
 const showcaseImages = products.slice(0, 6).map((p) => ({
@@ -198,26 +199,50 @@ export default function Hero() {
 
 function Marquee() {
   const items = [
-    "New Arrivals",
-    "Free Shipping Over ৳2000",
-    "Summer Collection",
-    "Limited Edition Drops",
-    "Shop The Look",
+    { label: "New Arrivals", icon: Sparkles },
+    { label: "Free Shipping Over ৳2000", icon: Truck },
+    { label: "Summer Collection", icon: SunIcon },
+    { label: "Limited Edition Drops", icon: Zap },
+    { label: "Shop The Look", icon: Eye },
   ];
   const looped = [...items, ...items, ...items];
 
   return (
-    <div className="bg-gray-900 dark:bg-black py-3 overflow-hidden">
-      <div className="flex w-max animate-marquee">
-        {looped.map((item, i) => (
-          <span
-            key={i}
-            className="mx-6 flex items-center gap-6 text-xs sm:text-sm font-semibold tracking-widest text-white uppercase whitespace-nowrap"
-          >
-            {item}
-            <span className="text-orange-400">✦</span>
-          </span>
-        ))}
+    <div className="relative bg-gray-900 dark:bg-black border-t border-orange-500/20 overflow-hidden">
+      {/* Thin gradient accent line on top */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
+
+      {/* Edge fade masks so text doesn't hard-cut at the container edges */}
+      <div
+        className="relative py-4"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+        }}
+      >
+        <div className="flex w-max animate-marquee">
+          {looped.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <div key={i} className="flex items-center">
+                <span className="mx-5 flex items-center gap-2.5 whitespace-nowrap">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500/15 border border-orange-500/30">
+                    <Icon
+                      className="w-3 h-3 text-orange-400"
+                      strokeWidth={2.5}
+                    />
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold tracking-widest text-white uppercase">
+                    {item.label}
+                  </span>
+                </span>
+                <span className="w-px h-3 bg-white/15" />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
