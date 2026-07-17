@@ -108,13 +108,6 @@ This project is hosted on **Vercel**:
 
 🔗 [fashion-store-three-psi.vercel.app](https://fashion-store-three-psi.vercel.app/)
 
-## 🗺️ Future Plans
-
-- [ ] Better product detail page (image gallery, related products)
-- [ ] Wishlist feature
-- [ ] User login and order history
-- [ ] Connect to a real backend/database
-
 ## 👤 Author
 
 **Faysal Hasan**
