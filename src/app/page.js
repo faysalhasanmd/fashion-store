@@ -102,15 +102,17 @@ export default function HomePage() {
           <Link
             href="/products"
             prefetch={false}
-            className="group inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-orange-600 hover:scale-105 transition-all"
+            className="group relative inline-flex items-center gap-2 overflow-hidden bg-orange-500 text-white px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-300 ease-out hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-300/50 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
-            View all
+            <span className="relative z-10">View all</span>
             <span
               aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-1"
+              className="relative z-10 transition-transform duration-300 ease-out group-hover:translate-x-1"
             >
               →
             </span>
+            {/* subtle press ripple background */}
+            <span className="absolute inset-0 scale-0 rounded-full bg-white/20 transition-transform duration-500 ease-out group-active:scale-100" />
           </Link>
         </div>
       </section>
