@@ -48,41 +48,41 @@ Oxivos is a modern online fashion store made from scratch. It shows real e-comme
 
 ```
 
+```
+
 ## 🧩 Project Structure
 
 ```
-
 fashion-store/
 ├── app/
-│ ├── page.js # Home page
-│ ├── not-found.jsx # Custom 404 page
-│ ├── products/ # Product list + dashboard
-│ ├── cart/ # Cart page
-│ └── layout.js # Main layout
+│   ├── page.js                    # Home page
+│   ├── not-found.jsx               # Custom 404 page
+│   ├── products/                   # Product list + dashboard
+│   ├── cart/                       # Cart page
+│   └── layout.js                   # Main layout
 ├── components/
-│ ├── product-details/ # Product detail page components
-│ ├── EmptyState.jsx # Empty-cart / no-results screen
-│ ├── Footer.jsx
-│ ├── Hero.jsx
-│ ├── Loader.jsx # Loading spinner / skeleton
-│ ├── Navbar.jsx
-│ ├── NewArrivals.jsx
-│ ├── Newsletter.jsx
-│ ├── Pagination.jsx # Page-by-page product navigation
-│ ├── ProductCard.jsx
-│ ├── ProductCardSkeleton.jsx # Skeleton loader for product cards
-│ ├── ProductDashboard.jsx # Search, sort, and category filter
-│ ├── SaleBanner.jsx
-│ ├── SmoothScroll.jsx # Lenis smooth-scroll wrapper
-│ ├── ThemeToggle.jsx # Light / dark mode switch
-│ └── TrendyCollection.jsx
+│   ├── product-details/            # Product detail page components
+│   ├── EmptyState.jsx              # Empty-cart / no-results screen
+│   ├── Footer.jsx
+│   ├── Hero.jsx
+│   ├── Loader.jsx                  # Loading spinner / skeleton
+│   ├── Navbar.jsx
+│   ├── NewArrivals.jsx
+│   ├── Newsletter.jsx
+│   ├── Pagination.jsx              # Page-by-page product navigation
+│   ├── ProductCard.jsx
+│   ├── ProductCardSkeleton.jsx     # Skeleton loader for product cards
+│   ├── ProductDashboard.jsx        # Search, sort, and category filter
+│   ├── SaleBanner.jsx
+│   ├── SmoothScroll.jsx            # Lenis smooth-scroll wrapper
+│   ├── ThemeToggle.jsx             # Light / dark mode switch
+│   └── TrendyCollection.jsx
 ├── context/
-│ └── CartContext.jsx # Cart data and logic
+│   └── CartContext.jsx             # Cart data and logic
 ├── data/
-│ └── products.js
+│   └── products.js
 └── public/
-
-````
+```
 
 ## ⚙️ How to Run This Project
 
@@ -92,7 +92,7 @@ Clone the project and install the packages:
 git clone https://github.com/faysalhasanmd/fashion-store.git
 cd fashion-store
 npm install
-````
+```
 
 Start the development server:
 
@@ -114,6 +114,7 @@ This project is hosted on **Vercel**:
 - [ ] Wishlist feature
 - [ ] User login and order history
 - [ ] Connect to a real backend/database
+- [ ] Dark mode
 
 ## 👤 Author
 
@@ -121,3 +122,5 @@ This project is hosted on **Vercel**:
 Full Stack (MERN) Developer
 
 - GitHub: [@faysalhasanmd](https://github.com/faysalhasanmd)
+
+---
