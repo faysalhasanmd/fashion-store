@@ -1,112 +1,155 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { playfair } from "@/lib/fonts";
-import { Heart, Star, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import products from "@/data/products";
 
 // Curated set of products to showcase as "New Arrivals"
 const NEW_ARRIVAL_IDS = [2, 7, 5, 10];
 
 export default function NewArrivals() {
+  const scrollRef = useRef(null);
   const items = NEW_ARRIVAL_IDS.map((id) =>
     products.find((p) => p.id === id),
   ).filter(Boolean);
 
+  const scrollBy = (dir) => {
+    const card = scrollRef.current?.querySelector("[data-card]");
+    const amount = card ? card.offsetWidth + 24 : 280;
+    scrollRef.current?.scrollBy({
+      left: dir * amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section
-      className={`${playfair.variable} max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 bg-[#f7f4ef] dark:bg-gray-900`}
+      className={`${playfair.variable} relative bg-[#f7f4ef] dark:bg-gray-900 py-10 sm:py-14 overflow-hidden`}
     >
-      {/* Heading */}
-      <div className="mb-8" data-aos="fade-up">
-        <span className="text-xs font-semibold tracking-widest text-orange-600 dark:text-orange-400 uppercase">
-          Just Landed
-        </span>
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1">
-          New Arrival
-        </h2>
-      </div>
+      {/* Ghost watermark text, sits behind everything — scales down on small screens */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[26vw] sm:text-[20vw] lg:text-[15vw] font-extrabold uppercase text-gray-900/[0.03] dark:text-white/[0.03] whitespace-nowrap leading-none"
+        style={{ fontFamily: "var(--font-playfair)" }}
+      >
+        New
+      </span>
 
-      {/* Product card grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-        {items.map((product, index) => (
-          <div
-            key={product.id}
-            className="group flex flex-col rounded-2xl bg-white dark:bg-gray-800 overflow-hidden shadow-md dark:shadow-black/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-            data-aos="fade-up"
-            data-aos-delay={index * 100}
-          >
-            {/* Image */}
-            <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-700">
-              <Link
-                prefetch={false}
-                href={`/products/${product.id}`}
-                className="relative block w-full h-full"
-              >
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Heading + nav arrows */}
+        <div
+          className="flex items-end justify-between gap-4 mb-8 sm:mb-12"
+          data-aos="fade-up"
+        >
+          <div>
+            <span className="text-xs font-semibold tracking-widest text-orange-600 dark:text-orange-400 uppercase">
+              Just Landed
+            </span>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mt-1">
+              New Arrival
+            </h2>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => scrollBy(-1)}
+              aria-label="Scroll left"
+              className="w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scrollBy(1)}
+              aria-label="Scroll right"
+              className="w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Horizontal shelf — alternating vertical offset creates a wave rhythm.
+            Offset amount grows gently across breakpoints; disabled below sm so
+            small screens get a clean, predictable single-line scroll. */}
+        <div
+          ref={scrollRef}
+          className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {items.map((product, index) => (
+            <Link
+              key={product.id}
+              href={`/products/${product.id}`}
+              prefetch={false}
+              data-card
+              className={`group relative shrink-0 w-[46vw] xs:w-[200px] sm:w-[230px] md:w-[250px] lg:w-[260px] snap-start ${
+                index % 2 === 1 ? "sm:mt-6 lg:mt-10" : ""
+              }`}
+            >
+              {/* Image */}
+              <div className="relative aspect-[3/4] rounded-2xl sm:rounded-[28px] overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  priority
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  priority={index < 2}
+                  sizes="(max-width: 640px) 46vw, (max-width: 1024px) 250px, 260px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-              </Link>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-              {/* Dark overlay on hover, for button contrast */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 pointer-events-none" />
-
-              {/* NEW badge */}
-              <span className="absolute top-3 left-3 bg-gray-900 dark:bg-white dark:text-gray-900 text-white text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full">
-                New
-              </span>
-
-              {/* Wishlist button */}
-              <button
-                type="button"
-                aria-label="Add to wishlist"
-                onClick={(e) => e.preventDefault()}
-                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm flex items-center justify-center text-gray-700 dark:text-gray-200 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:text-orange-600 dark:hover:text-orange-400"
-              >
-                <Heart className="w-4 h-4" />
-              </button>
-
-              {/* View Product button — centered on image, shows on hover */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Link
-                  href={`/products/${product.id}`}
-                  // prefetch={false}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-xs font-bold uppercase tracking-wide px-5 py-2.5 shadow-lg opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-orange-500 hover:text-white"
-                >
-                  View Product
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="px-4 py-4 flex flex-col">
-              <p className="text-[11px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-1.5">
-                {product.category}
-              </p>
-              <h3 className="text-sm sm:text-[15px] font-bold text-gray-900 dark:text-white leading-snug mb-2">
-                {product.name}
-              </h3>
-
-              {/* Price + rating row */}
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-base font-bold text-gray-900 dark:text-white">
-                  ৳{product.price.toLocaleString()}
-                </span>
-                <span className="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-300">
-                  <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                {/* Rating pill, top-right */}
+                <span className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-[10px] sm:text-[11px] font-bold text-gray-900 dark:text-white px-1.5 sm:px-2 py-1 rounded-full">
+                  <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-yellow-400 text-yellow-400" />
                   {product.rating ?? "4.5"}
                 </span>
+
+                {/* Category — vertical rotated label along the left edge, hidden on the smallest cards where there isn't room */}
+                <span className="hidden xs:block absolute left-2.5 sm:left-3 bottom-14 sm:bottom-16 text-[9px] sm:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/80 origin-bottom-left -rotate-90">
+                  {product.category}
+                </span>
+
+                {/* Name + price, bottom */}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+                  <h3 className="text-white text-xs sm:text-sm font-semibold leading-snug mb-1 line-clamp-1">
+                    {product.name}
+                  </h3>
+                  <span className="text-white/90 text-[11px] sm:text-xs font-bold">
+                    ৳{product.price.toLocaleString()}
+                  </span>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+
+              {/* Index number, floats above the card corner */}
+              <span
+                className="absolute -top-2 sm:-top-3 -left-1 text-2xl sm:text-3xl lg:text-4xl font-extrabold select-none"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                <span
+                  className="text-gray-300/70 dark:text-gray-600/70"
+                  style={{
+                    WebkitTextStroke: "1.5px currentColor",
+                    color: "transparent",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </span>
+            </Link>
+          ))}
+
+          {/* Trailing spacer so the last card can fully snap into view */}
+          <div className="shrink-0 w-px" aria-hidden="true" />
+        </div>
+
+        {/* Mobile scroll hint */}
+        <p className="sm:hidden text-center text-xs text-gray-400 dark:text-gray-500 mt-2">
+          ← Swipe to explore →
+        </p>
       </div>
     </section>
   );
