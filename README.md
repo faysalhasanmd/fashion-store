@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛍️ Oxivos — Fashion E-Commerce Store
+# 🛍️ Oxivos - Fashion E-Commerce Store
 
 A fully responsive fashion store website built with **Next.js**. It has a smart product dashboard, live search and filters, a working shopping cart, and smooth scroll animations.
 
@@ -16,21 +16,21 @@ Oxivos is a modern online fashion store made from scratch. It shows real e-comme
 
 ## 🚀 Main Features
 
-- **Animated Hero Section** — product images change automatically with smooth transitions
-- **Product Dashboard** — a sidebar with:
+- **Animated Hero Section** - product images change automatically with smooth transitions
+- **Product Dashboard** - a sidebar with:
   - Live search by product name or category
   - Sort by price (low to high / high to low)
   - Category filter with item count for each category
   - "Clear all" button to reset filters
-- **Smooth Scroll Animations** — using AOS, sections and cards fade/zoom in nicely as you scroll
-- **Smooth Page Scrolling** — using Lenis for a soft, modern scroll feel
-- **Shopping Cart** — add, remove, and update item quantity, with clean UI feedback
-- **Nice Alerts** — SweetAlert2 popups for actions like removing an item or checkout
-- **Loading & Empty States** — skeleton loaders while content loads, and friendly empty-cart / no-results screens
-- **Light / Dark Mode** — theme toggle for switching between light and dark look
-- **Pagination** — clean page-by-page browsing for the product list
-- **Fully Responsive** — works well on mobile, tablet, and desktop
-- **Homepage Sections** — category showcase, featured products, sale banner, and newsletter sign-up
+- **Smooth Scroll Animations** - using AOS, sections and cards fade/zoom in nicely as you scroll
+- **Smooth Page Scrolling** - using Lenis for a soft, modern scroll feel
+- **Shopping Cart** - add, remove, and update item quantity, with clean UI feedback
+- **Nice Alerts** - SweetAlert2 popups for actions like removing an item or checkout
+- **Loading & Empty States** - skeleton loaders while content loads, and friendly empty-cart / no-results screens
+- **Light / Dark Mode** - theme toggle for switching between light and dark look
+- **Pagination** - clean page-by-page browsing for the product list
+- **Fully Responsive** - works well on mobile, tablet, and desktop
+- **Homepage Sections** - category showcase, featured products, sale banner, and newsletter sign-up
 
 ## 🛠️ Built With
 
