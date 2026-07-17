@@ -114,7 +114,6 @@ This project is hosted on **Vercel**:
 - [ ] Wishlist feature
 - [ ] User login and order history
 - [ ] Connect to a real backend/database
-- [ ] Dark mode
 
 ## 👤 Author
 
