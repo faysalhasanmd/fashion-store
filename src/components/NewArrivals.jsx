@@ -4,26 +4,20 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { playfair } from "@/lib/fonts";
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import products from "@/data/products";
 
 // Curated set of products to showcase as "New Arrivals"
 const NEW_ARRIVAL_IDS = [2, 7, 5, 10];
+
+// One distinct AOS animation per card, so each item enters differently
+const CARD_ANIMATIONS = ["fade-up", "fade-down", "zoom-in", "flip-up"];
 
 export default function NewArrivals() {
   const scrollRef = useRef(null);
   const items = NEW_ARRIVAL_IDS.map((id) =>
     products.find((p) => p.id === id),
   ).filter(Boolean);
-
-  const scrollBy = (dir) => {
-    const card = scrollRef.current?.querySelector("[data-card]");
-    const amount = card ? card.offsetWidth + 24 : 280;
-    scrollRef.current?.scrollBy({
-      left: dir * amount,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <section
@@ -39,7 +33,7 @@ export default function NewArrivals() {
       </span>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading + nav arrows */}
+        {/* Heading */}
         <div
           className="flex items-end justify-between gap-4 mb-8 sm:mb-12"
           data-aos="fade-up"
@@ -52,33 +46,14 @@ export default function NewArrivals() {
               New Arrival
             </h2>
           </div>
-
-          <div className="hidden sm:flex items-center gap-2 shrink-0">
-            <button
-              onClick={() => scrollBy(-1)}
-              aria-label="Scroll left"
-              className="w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => scrollBy(1)}
-              aria-label="Scroll right"
-              className="w-9 h-9 lg:w-10 lg:h-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
-        {/* Horizontal shelf — alternating vertical offset creates a wave rhythm.
-            Offset amount grows gently across breakpoints; disabled below sm so
-            small screens get a clean, predictable single-line scroll. */}
+        {/* Horizontal shelf — centers itself when cards fit within the container;
+            justify-center is harmlessly ignored by the browser once content
+            overflows and horizontal scrolling takes over. */}
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          data-aos="fade-up"
-          data-aos-delay="100"
+          className="flex justify-center gap-4 sm:gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((product, index) => (
             <Link
@@ -86,6 +61,9 @@ export default function NewArrivals() {
               href={`/products/${product.id}`}
               prefetch={false}
               data-card
+              data-aos={CARD_ANIMATIONS[index % CARD_ANIMATIONS.length]}
+              data-aos-delay={index * 120}
+              data-aos-duration="700"
               className={`group relative shrink-0 w-[46vw] xs:w-[200px] sm:w-[230px] md:w-[250px] lg:w-[260px] snap-start ${
                 index % 2 === 1 ? "sm:mt-6 lg:mt-10" : ""
               }`}
@@ -141,9 +119,6 @@ export default function NewArrivals() {
               </span>
             </Link>
           ))}
-
-          {/* Trailing spacer so the last card can fully snap into view */}
-          <div className="shrink-0 w-px" aria-hidden="true" />
         </div>
 
         {/* Mobile scroll hint */}
